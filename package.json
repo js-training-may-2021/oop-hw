@@ -1,0 +1,21 @@
+{
+  "name": "oop-hw",
+  "version": "1.0.0",
+  "description": "my version of oop-hw",
+  "type": "module",
+  "main": "Order.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ziprion/oop-hw.git"
+  },
+  "keywords": [],
+  "author": "Maxim Novikov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ziprion/oop-hw/issues"
+  },
+  "homepage": "https://github.com/Ziprion/oop-hw#readme"
+}
