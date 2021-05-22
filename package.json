@@ -1,0 +1,21 @@
+{
+  "name": "oop-hw",
+  "version": "1.0.0",
+  "description": "Вы хозяин небольшого кафе быстрого питания. Ваше меню состоит из следующих позиций:\r #### 1) Гамбургер",
+  "main": "drink.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeoZeRGG/oop-hw.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/NeoZeRGG/oop-hw/issues"
+  },
+  "homepage": "https://github.com/NeoZeRGG/oop-hw#readme"
+}
