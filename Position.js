@@ -1,23 +1,21 @@
 export default class Position {
-  #type;
-
   constructor(type = { name: 'unknown', price: 0, calories: 0 }) {
-    this.#type = type;
+    this.type = type;
   }
 
   toString() {
-    return `${this.getType()}`;
+    return `${this.getName()}`;
   }
 
-  getType() {
-    return this.#type.name;
+  getName() {
+    return this.type.name;
   }
 
   calculatePrice() {
-    return this.#type.price;
+    return this.type.price;
   }
 
   calculateCalories() {
-    return this.#type.calories;
+    return this.type.calories;
   }
 }

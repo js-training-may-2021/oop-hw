@@ -3,59 +3,57 @@ import Salad from './Salad.js';
 import Drink from './Drink.js';
 
 export default class Order {
-  #order;
-  #isPaid;
-
   constructor(...positions) {
-    this.#order = positions;
-    this.#isPaid = false;
+    this.order = positions;
+    this.paid = false;
   }
 
   getPositions() {
-    return this.#order.join('\n');
+    return this.order.join('\n');
   }
 
   calculatePrice() {
-    return this.#order.reduce((acc, item) => (acc += item.calculatePrice()), 0);
+    return this.order.reduce((acc, item) => (acc += item.calculatePrice()), 0);
   }
 
   calculateCalories() {
-    return this.#order.reduce(
+    return this.order.reduce(
       (acc, item) => (acc += item.calculateCalories()),
       0
     );
   }
 
   addPosition(position) {
-    if (this.#isPaid) {
-      return `Sorry, your order was paid. You can't add new position`;
+    if (this.paid) {
+      return `Sorry, your order was paided. You can't add new position`;
     }
-    this.#order.push(position);
+    this.order.push(position);
     return `Position was added!`;
   }
 
   removePosition(positionIndex) {
     const arrIndex = positionIndex - 1;
-    if (this.#isPaid) {
+    if (this.paid) {
       return `Sorry, your order was paided. You can't remove any position`;
     }
-    if (!this.#order.includes(this.#order[arrIndex])) {
+    if (!this.order.includes(this.order[arrIndex])) {
       return `Sorry, your order doesn't have that position`;
     }
-    this.#order.splice(arrIndex, 1);
+    this.order.splice(arrIndex, 1);
     return `Position was removed!`;
   }
 
-  getPaid() {
-    return this.#isPaid ? 'Order was paided' : `Order wasn't paided`;
+  isPaid() {
+    return this.paid ? 'Order was paided' : `Order wasn't paided`;
   }
 
   payOrder() {
-    this.#isPaid = true;
-    return `Order is paided`;
+    this.paid = true;
+    return 'Order is paided';
   }
 }
 
+// FOR EXAMPLE
 // const item1 = new Hamburger(Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE);
 // const item2 = new Hamburger(Hamburger.SIZE_LARGE, Hamburger.STUFFING_POTATO);
 // const item3 = new Hamburger(Hamburger.SIZE_LARGE, Hamburger.STUFFING_SALAD);
@@ -86,12 +84,26 @@ export default class Order {
 // console.log(`------------------------`);
 // console.log(order1.removePosition(-2));
 // console.log(`------------------------`);
-// console.log(order1.getPaid());
+// console.log(order1.isPaid());
 // console.log(`------------------------`);
 // console.log(order1.payOrder());
+// console.log(`------------------------`);
+// console.log(order1.getPositions());
 // console.log(`------------------------`);
 // console.log(order1.addPosition(item3));
 // console.log(`------------------------`);
 // console.log(order1.removePosition(2));
 // console.log(`------------------------`);
 // console.log(order1.getPositions());
+// console.log(`------------------------`);
+// console.log(order1.calculateCalories());
+// console.log(`------------------------`);
+// console.log(order1.calculatePrice());
+// console.log(`------------------------`);
+// console.log(order1.removePosition(2));
+// console.log(`------------------------`);
+// console.log(order1.getPositions());
+// console.log(`------------------------`);
+// console.log(order1.calculateCalories());
+// console.log(`------------------------`);
+// console.log(order1.calculatePrice());
