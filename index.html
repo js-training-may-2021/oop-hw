@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Заказ еды</title>
+  </head>
+  <body>
+
+    <div class="container" style="width: 600px; max-width: 90%; margin:30px auto;">
+
+      <form class="search-form" action="#">
+
+      <fieldset>
+        <legend>Гамбургеры</legend>
+
+        <label>Большой <input type="checkbox" value="hamburger-large" name="hamburger-large" id="hamburger-large"></label>
+        Начинка: 
+        <select id="large-hamburger-stuffing">
+          <option value="0">Выбрать</option>
+          <option value="Сыр">Сыр</option>
+          <option value="Салат">Салат</option>
+          <option value="Картошка">Картошка</option>
+        </select>
+        <br><a href="#" class="add" id="add-hamburger-large">Добавить</a><br>
+
+        <label>Маленький <input type="checkbox" value="hamburger-small" name="hamburger-small" id="hamburger-small"></label>
+        Начинка: 
+        <select id="small-hamburger-stuffing">
+          <option value="0">Выбрать</option>
+          <option value="Сыр">Сыр</option>
+          <option value="Салат">Салат</option>
+          <option value="Картошка">Картошка</option>
+        </select>
+        <br><a href="#" class="add" id="add-hamburger-small">Добавить</a>
+
+      </fieldset>
+
+      <fieldset>
+        <legend>Салаты, 100 г</legend>
+
+        <label>Цезарь<input type="checkbox" value="caesar" name="caesar" id="caesar"></label>
+        <br><a href="#" class="add" id="add-caesar">Добавить</a><br>
+
+        <label>Оливье<input type="checkbox" value="olivier" name="olivier" id="olivier"></label>
+        <br><a href="#" class="add" id="add-olivier">Добавить</a>
+        
+      </fieldset>
+
+      <fieldset>
+        <legend>Напитки</legend>
+
+        <label>Кофе<input type="checkbox" value="coffee" name="coffee" id="coffee"></label>
+        <br><a href="#" class="add" id="add-coffee">Добавить</a><br>
+
+        <label>Кола<input type="checkbox" value="cola" name="cola" id="cola"></label>
+        <br><a href="#" class="add" id="add-cola">Добавить</a>
+
+      </fieldset>
+
+      <br>
+      <p class="order-items"></p>
+      <p><strong class="total">Итого: 0 позиций, 0 кал, 0 тугриков</strong></p>
+      <br>
+
+      <div class="buttons-block">
+        <button class="btn reset-btn" type="reset">Сбросить</button>
+        <button class="btn pay-btn" type="submit">Оплатить</button>
+      </div>
+
+      </form>
+
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
