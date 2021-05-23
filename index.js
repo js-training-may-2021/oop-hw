@@ -1,8 +1,10 @@
 "use strict";
 
 class Order {
+
   products = [];
   isPaid = false;
+
   getTotal() {
     const productsCopy = this.products.slice();
     const total = productsCopy.reduce((currentTotal, product) => {
@@ -10,6 +12,7 @@ class Order {
     }, 0);
     return total;
   };
+
   getCalories() {
     const productsCopy = this.products.slice();
     const calories = productsCopy.reduce((currentCalories, product) => {
@@ -17,6 +20,7 @@ class Order {
     }, 0);
     return calories;
   };
+
   addProduct(product) {
     if (this.isPaid) {
       console.log("The order is already paid. No changes allowed.");
@@ -25,6 +29,7 @@ class Order {
     this.products.push(product);
     return this;
   };
+
   deleteProduct(product) {
     if (this.isPaid) {
       console.log("The order is already paid. No changes allowed.");
@@ -37,25 +42,30 @@ class Order {
     }
     return this;
   };
+
   payOrder() {
     this.isPaid = true;
     console.log("The order is paid");
     return this;
   };
+
 };
 
 class Product {
+
   constructor(name) {
     this.name = name;
     this.price = this.getPrice();
     this.calories = this.getCalories();
     this.id = this.getId();
   }
+
   getPrice() { };
   getCalories() { };
   getId() {
     return Math.round(Math.random() * 10000);
   }
+
 }
 
 class Salad extends Product {
@@ -68,7 +78,7 @@ class Salad extends Product {
   constructor(name = Salad.CAESAR, quantity = Salad.STANDARD_SERVING) {
     super(name);
     this.category = Salad.CATEGORY;
-    this.quantity = isFinite(quantity) ? quantity : Salad.STANDARD_SERVING;
+    this.quantity = isFinite(quantity) && quantity > 0 ? quantity : Salad.STANDARD_SERVING;
     this.price = this.getPrice();
     this.calories = this.getCalories();
   }
@@ -210,11 +220,12 @@ class Hamburger extends Product {
 
 const order = new Order();
 
-const salad = new Salad("olivie", 150);
+const salad = new Salad("olivie", 50);
 const salad1 = new Salad();
 const drink = new Drink("coffee");
 const drink1 = new Drink("COffee");
 const burger = new Hamburger("large", "cheese");
 const burger1 = new Hamburger("Big", "POtaTo");
+const defaultBurger = new Hamburger();
 
 console.log(order.addProduct(burger1).addProduct(drink1).getTotal());
