@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <form name="" action="" id="form" style="width: 200px">
+            <fieldset>
+                <legend s>Make your order</legend>
+                <div class="menu">
+                    <div class="hamburger"> 
+                            <p>Choose Size</p>
+                            <div class="radio-option">
+                                <input type="radio" name="size" id="small" value="small" checked/>
+                                <label for="small">Small</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="size" id="large" value="large" />
+                                <label for="large">Large</label>
+                            </div>
+                        </div>
+                        <div class="row stuffing" style="border-bottom: 1px solid gray;padding-bottom: 15px;margin-bottom: 15px;">
+                            <p>Stuffing</p>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="addStuff" id="cheese" value="cheese"/>
+                                <label for="cheese">Cheese</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="addStuff" id="salad" value="salad" />
+                                <label for="salad">Salad</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="addStuff" id="potato" value="potato" />
+                                <label for="potato">Potato</label>
+                            </div>
+                            <button class="add-btn" type="button" style="margin-top: 10px;" onclick="Hamburger.prototype.addBurgerToOrder()">Add</button>
+                        </div>   
+                    </div>
+                    <div class="salad">
+                        <div class="row stuffing" style="border-bottom: 1px solid gray;padding-bottom: 15px;margin-bottom: 15px;">
+                            <p>Salad</p>
+                            <div class="radio-option">
+                                <input type="radio" name="addSalad" id="caesar" value="caesar" checked/>
+                                <label for="caesar">Caesar</label>                                
+                                <span><input id="caesarWeight" type="number" min="100" value="100" /></span>
+                                <label for="caesarWeight">-weight</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="addSalad" id="olivier" value="olivier" />
+                                <label for="olivier">Olivier</label>
+                                <span><input id="olivWeight" type="number" min="100" value="100" /></span>
+                                <label for="oliWeight">-weight</label>
+                            </div>
+                            <button class="add-btn" type="button" style="margin-top: 10px;" onclick="Salad.prototype.addSaladToOrder()">Add</button>
+                        </div>
+                    </div>
+                    <div class="drink">
+                        <div class="row stuffing" style="border-bottom: 1px solid gray;padding-bottom: 15px;margin-bottom: 15px;">
+                            <p>Drink</p>
+                            <div class="radio-option">
+                                <input type="radio" name="addDrink" id="pepsi" value="pepsi" />
+                                <label for="pepsi">Pepsi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="addDrink" id="coffee" value="coffee" />
+                                <label for="coffee">Coffee</label>
+                            </div>
+                            <button class="add-btn" type="button" style="margin-top: 10px;" onclick="Drink.prototype.addDrinkToOrder()">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-line">
+                    <table id="order-table" border="1">
+                        <caption style="text-align: left;">Order</caption>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Calories</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th>Total Calories</th>
+                        </tr>                        
+                       </table>
+                </div>
+                <p>Order price: <span id="totalPrice">0</span> тугриков</p>
+                <p>Calorie content: <span id="totalCalories">0</span> калорий</p>
+                <br>
+                <div class="submit">
+                    <input type="button" value="Make Order" /> </div>
+            </fieldset>
+        </form>
+    </main>
+    <script src="menu.js"></script>
+</body>
+</html>
