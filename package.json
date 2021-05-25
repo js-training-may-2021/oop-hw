@@ -1,0 +1,25 @@
+{
+  "name": "oop_hw_mark",
+  "version": "1.0.0",
+  "description": "oop",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/M4rkelus/oop-hw.git"
+  },
+  "author": "Mark Pirogov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/M4rkelus/oop-hw/issues"
+  },
+  "homepage": "https://github.com/M4rkelus/oop-hw#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.27.0"
+  }
+}
