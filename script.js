@@ -6,6 +6,15 @@
 * @param stuffing    Начинка
 */
 
+//Класс блюд с типами (салат и напиток)
+function DishWithType(type) {
+    this.type = type;
+
+    this.getType = function () {
+        return this.type;
+    }
+}
+
 function Hamburger(size, ...stuffing) {
     this.size = size;
     this.stuffing = stuffing;
@@ -53,16 +62,14 @@ Hamburger.prototype.calculateCalories = function () {
 
 
  //  Класс напиток
-function Drink(type) {
-    this.type = type;
-}
+ class Drink extends DishWithType { // ES6
+     constructor(type) {
+        super(type);
+     }
+ };
 
 Drink.COLA = {price: 50, calories: 40};
 Drink.COFFEE = {price: 80, calories: 20};
-
-Drink.prototype.getType = function () {
-    return this.type;
-}
 
 Drink.prototype.calculatePrice = function () {
     return this.getType().price;
@@ -75,15 +82,13 @@ Drink.prototype.calculateCalories = function () {
 
 // Класс салат
 function Salad(type, weight) {
-    this.type = type;
+    DishWithType.call(this, type);
     this.weight = weight;
 }
+Salad.prototype = Object.create(DishWithType.prototype); // ES5
+
 Salad.CEASER = {price: 100, calories: 20};
 Salad.OLIVER = {price: 50, calories: 80};
-//Узнать тип салата
-Salad.prototype.getType = function () {
-    return this.type;
-}
 //Узнать вес салата
 Salad.prototype.getWeight = function () {
     return this.weight;
@@ -144,16 +149,18 @@ function Order () {
     }
 
 }
-    // Сюда добавлять блюда
-let order = new Order();
-order.addDish(new Hamburger (Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE));
-order.addDish(new Salad (Salad.CEASER, 200));
-order.addDish(new Drink (Drink.COFFEE));
-order.removeDish(new Hamburger (Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE));
-order.pay();
-order.addDish(new Drink (Drink.COFFEE));
-order.addDish(new Hamburger (Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE));
-console.log(order.order);
-console.log(order.calculatePrice());
-console.log(order.calculateCalories());
+
+// Здесь можно добавлять блюда для тестирования
+
+// let order = new Order();
+// order.addDish(new Hamburger (Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE));
+// order.addDish(new Salad (Salad.CEASER, 200));
+// order.addDish(new Drink (Drink.COFFEE));
+// order.removeDish(new Hamburger (Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE));
+// order.pay();
+// order.addDish(new Drink (Drink.COFFEE));
+// order.addDish(new Hamburger (Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE));
+// console.log(order.order);
+// console.log(order.calculatePrice());
+// console.log(order.calculateCalories());
 
