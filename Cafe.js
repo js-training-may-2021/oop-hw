@@ -103,7 +103,6 @@ class Drink extends Position {
 Drink.TYPE_COKE = {name: 'Coke', price: 50, calories: 40};
 Drink.TYPE_COFFEE = {name: 'Coffee', price: 80, calories: 20};
 
-
 export default class Order {
     constructor(...positions) {
         this.orderList = positions;
