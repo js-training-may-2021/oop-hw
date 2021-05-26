@@ -39,10 +39,12 @@ class Order {
 
   removeItem(item) {
     if (this.isPaid) {
-      return 'You cannot delete anything from your order. Your order is paid!';
+      console.log('You cannot delete anything from your order. Your order is paid!');
+      return;
     }
     if (this.order.length === 0) {
-      return 'Your order is empty. Nothing to delete!';
+      console.log('Your order is empty. Nothing to delete!');
+      return;
     }
     let index = this.order.indexOf(item);
     index !== -1 ? this.order.splice(index, 1) : 'Item has not been added.';
