@@ -173,12 +173,3 @@ class Order {
         this.isPaid = true;
     }
 }
-
-const order1 = new Order();
-order1.addItem('ham', 'small', 'salad');
-order1. addItem('drink',"coffee");
-order1.addItem('salad', 'olivie', 150);
-order1.addItem('salad', 'oliv', 150);
-order1. addItem('ham', 'big', 'cheese');
-order1. removeItem('ham', 'big', 'cheese');
-order1.pay();
