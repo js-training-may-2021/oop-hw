@@ -1,4 +1,19 @@
 'use strict';
+const percent = 100;
+
+function Item() {
+	this.price = 0;
+	this.calories = 0;
+}
+
+Item.prototype.calculatePrice  = function() {
+	return this.price;
+}
+
+Item.prototype.calculateCalories = function() {
+	return this.calories;
+}
+
 /**
  * Класс, объекты которого описывают параметры гамбургера
  * 
@@ -7,9 +22,13 @@
  * @param stuffing Начинка
  */
  function Hamburger(size, stuffing) {
+    Item.call(this);
     this.size = size;
     this.stuffing = stuffing;
 }
+
+Hamburger.prototype = Object.create(Item.prototype);
+Hamburger.prototype.constructor = Hamburger;
 
 //Размеры и виды начинок
 Hamburger.SIZE_SMALL = {name: 'Tiny Tiger', price: 50, calories: 20};
@@ -106,9 +125,14 @@ Hamburger.prototype.addBurgerToOrder = () => {
  * @param Вес
  */
 function Salad(type, weight) {
+	Item.call(this);
 	this.type = type;
 	this.weight = weight;
 }
+
+Salad.prototype = Object.create(Item.prototype);
+Salad.prototype.constructor = Salad;
+
 // Цена и калории за 100г.
 Salad.TYPE_CAESAR = { name: 'caesar', price: 100, calories: 20 };
 Salad.TYPE_OLIVE = { name: 'olivier', price: 50, calories: 80 };
@@ -135,12 +159,12 @@ Salad.prototype.getWeight = function() {
 
 // Узнать цену по количеству грамм
 Salad.prototype.calculatePrice = function(salad) {
-	let pricePerGram = (salad.type.price / 100).toFixed(2);
+	let pricePerGram = (salad.type.price / percent).toFixed(2);
 	return pricePerGram * salad.weight
 }
 // Узнать калорийность по количеству грамм
 Salad.prototype.calculateCalories = function(salad) {
-	let caloriesPerGram = (salad.type.calories / 100).toFixed(2);
+	let caloriesPerGram = (salad.type.calories / percent).toFixed(2);
 	return caloriesPerGram * salad.weight;
 }
 
@@ -160,8 +184,12 @@ Salad.prototype.addSaladToOrder = () => {
  * @param Тип
  */
 function Drink(type) {
+	Item.call(this);
 	this.type = type;
 }
+
+Drink.prototype = Object.create(Item.prototype);
+Drink.prototype.constructor = Drink;
 
 Drink.TYPE_PEPSI = { name: 'pepsi', price: 50, calories: 40 };
 Drink.TYPE_COFFEE = { name: 'arabica', price: 80, calories: 20 };
