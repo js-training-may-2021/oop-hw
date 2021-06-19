@@ -10,12 +10,6 @@ class BaseProduct {
 
 class Hamburger {
   constructor(size, stuffing) {
-    this.SIZE_SMALL = new BaseProduct('small', 50, 20);
-    this.SIZE_LARGE = new BaseProduct('large', 100, 40);
-    this.STUFFING_CHEESE = new BaseProduct('cheese', 10, 20);
-    this.STUFFING_SALAD = new BaseProduct('salad', 20, 5);
-    this.STUFFING_POTATO = new BaseProduct('potato', 15, 10);
-
     if (size === this.SIZE_SMALL.name) {
       this.size = this.SIZE_SMALL;
     } else if (size === this.SIZE_LARGE.name) {
@@ -35,16 +29,18 @@ class Hamburger {
     }
     
     this.price = this.size.price + this.stuffing.price;
-
     this.calories = this.size.calories + this.stuffing.calories;
   }
+
+  SIZE_SMALL = new BaseProduct('small', 50, 20);
+  SIZE_LARGE = new BaseProduct('large', 100, 40);
+  STUFFING_CHEESE = new BaseProduct('cheese', 10, 20);
+  STUFFING_SALAD = new BaseProduct('salad', 20, 5);
+  STUFFING_POTATO = new BaseProduct('potato', 15, 10);
 }
 
 class Salad {
   constructor(name, weight) {
-    this.CEASAR = new BaseProduct('caesar', 100, 20);
-    this.RUSSIAN = new BaseProduct('russian', 50, 80);
-
     if (name === this.CEASAR.name) {
       this.name = this.CEASAR;
     } else if (name === this.RUSSIAN.name) {
@@ -54,16 +50,17 @@ class Salad {
     }
 
     this.weight = weight;
-    this.price = this.name.price * (this.weight/100);
-    this.calories = this.name.calories * (this.weight/100);
+    this.price = this.name.price * (this.weight/this.priceForWeight);
+    this.calories = this.name.calories * (this.weight/this.priceForWeight);
   }
+
+  CEASAR = new BaseProduct('caesar', 100, 20);
+  RUSSIAN = new BaseProduct('russian', 50, 80);
+  priceForWeight = 100;
 }
 
 class Drink {
   constructor(name) {
-    this.COLA = new BaseProduct('cola', 50, 40);
-    this.COFFEE = new BaseProduct('coffee', 80, 20);
-
     if (name === this.COLA.name) {
       this.name = this.COLA;
     } else if (name === this.COFFEE.name) {
@@ -75,11 +72,15 @@ class Drink {
     this.price = this.name.price;
     this.calories = this.name.calories;
   }
+
+  COLA = new BaseProduct('cola', 50, 40);
+  COFFEE = new BaseProduct('coffee', 80, 20);
 }
 
 class Order {
   constructor(order) {
     this.list = order;
+    this.paid = false;
   }
 
   totalPrice() {
@@ -91,11 +92,18 @@ class Order {
   }
 
   addProduct(product) {
+    if (this.paid) {
+      throw new Error('You can\'t edit a paid order');
+    }
     this.list.push(product);
     return this;
   }
 
   removeProduct(productType, option1 = null, option2 = null) {
+    if (this.paid) {
+      throw new Error('You can\'t edit a paid order');
+    }
+
     if (option1 === null && option2 === null) {
       this.list = this.list.filter( item => !(item instanceof productType));
       return this;
@@ -121,11 +129,15 @@ class Order {
   }
 
   pay() {
+    this.paid = true;
     Object.freeze(this);
     Object.freeze(this.list);
+    this.list.forEach( item => Object.freeze(item));
     return this;
   }
 }
+
+
 
 // How the typical order should look:
 
