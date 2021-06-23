@@ -4,10 +4,39 @@
 //  Типы начинок, размеры надо сделать константами. Никаких магических строк не должно быть.
 
 
-//создаем класс салат и делаем его прототипом
-function Salad(salad) {
-    this.calories = salad.calories;
-    this.price = salad.price;
+//создаем класс напиток и делаем его прототипом
+function Drink(drink) {
+    this.calories = drink.calories;
+    this.price = drink.price;
+}
+
+Drink.COLA = {
+    'price': 50,
+    'calories': 40
+}
+
+Drink.COFFEE = {
+    'price': 80,
+    'calories': 20
+}
+Drink.prototype.calculatePrice = function () {
+    return this.price;
+}
+
+Drink.prototype.calculateCalories = function () {
+    return this.calories;
+}
+
+function Salad(salad, weight) {
+    Drink.call(this, salad)
+    this.weight = weight || 100;
+}
+
+Salad.prototype.calculatePrice = function () {
+    return ((this.price * weight) / 100);
+}
+Salad.prototype.calculateCalories = function () {
+    return ((this.calories * weight) / 100);
 }
 
 // задаем константы
@@ -21,36 +50,12 @@ Salad.OLIVIE = {
     'calories': 80
 }
 
-Salad.prototype.calculatePrice = function () {
-    return this.price;
-}
-
-Salad.prototype.calculateCalories = function () {
-    return this.price;
-}
-
-//создаем класс напиток и наследуем от него свойства салата
-
-function Drink(drink) {
-    Salad.call(this, drink)
-}
-
-Drink.COLA = {
-    'price': 50,
-    'calories': 40
-}
-
-Drink.COFFEE = {
-    'price': 80,
-    'calories': 20
-}
-
-// за счет этой строчки в прототайпе дринка сохраняется ссылка на прототайп салата и мы можем использовать его методы
-Drink.prototype = Object.create(Salad.prototype);
+// за счет этой строчки в прототайпе салата сохраняется ссылка на прототайп дринка и мы можем использовать его методы
+Salad.prototype = Object.create(Drink.prototype);
 
 //создаем класс гамбургер  и наследуем от него свойства салата
 function Hamburger(size, stuffing) {
-    Salad.call(this, size);
+    Drink.call(this, size);
     this.calories += stuffing.calories;
     this.price += stuffing.price
 }
@@ -77,7 +82,7 @@ Hamburger.STUFFING_POTATO = {
 }
 
 // за счет этой строчки в прототайпе гамбургер сохраняется ссылка на прототайп салата и мы можем использовать его методы
-Hamburger.prototype = Object.create(Salad.prototype);
+Hamburger.prototype = Object.create(Drink.prototype);
 
 // пример бургера
 var myBurger = new Hamburger(Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE);
@@ -111,14 +116,13 @@ function Order() {
         return args.push(el)
     }
 
-    this.removeSome = function (value)
-        { 
-                var index = this.items.indexOf(value);
-                if (index > -1) {
-                    this.items.splice(index, 1);
-                }
-                return this.items;
-            }
+    this.removeSome = function (value) {
+        var index = this.items.indexOf(value);
+        if (index > -1) {
+            this.items.splice(index, 1);
+        }
+        return this.items;
+    }
 
 
     // заморозили каждый элемент объекта order
@@ -131,24 +135,40 @@ function Order() {
 
 
 // создаем заказ
-var i1 = { 'price': 30,
-'calories': 5}
-var i2 = { 'price': 30,
-'calories': 5}
-var i3 = { 'price': 30,
-'calories': 5}
-var i4 = { 'price': 30,
-'calories': 5}
-var i5 = { 'price': 30,
-'calories': 5}
+var i1 = {
+    'price': 30,
+    'calories': 5
+}
 
-// экземпляры наших классов
+var i2 = {
+    'price': 30,
+    'calories': 5
+}
+
+
+var i3 = {
+    'price': 30,
+    'calories': 5
+}
+var i4 = {
+    'price': 30,
+    'calories': 5
+}
+var i5 = {
+    'price': 30,
+    'calories': 5
+}
+
+
+// примеры и экземпляры наших классов
 var drink = new Drink(i1)
-var salad = new Salad(i2)
+var salad = new Salad(i2, 300)
 var burger = new Hamburger(i3, i4)
 var burgerOth = new Hamburger(i3, i5)
-var order = new Order(drink,salad,burger,burgerOth);
+var order = new Order(drink, salad, burger, burgerOth);
 console.log(order.removeSome(burgerOth))
+console.log(salad.calculatePrice())
 
 // после вызова функции ниже нельзя удалить/добавить экземпляр
 order.pay()
+// console.log(order.removeSome(burgerOth))
