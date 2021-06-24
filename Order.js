@@ -49,6 +49,8 @@ export default class Order {
 
   payOrder() {
     this.paid = true;
+    Object.freeze(this);
+    Object.freeze(this.order);
     return 'Order is paided';
   }
 }
