@@ -93,8 +93,7 @@ class Burger extends Product {
     }, 0);
 
     const burgerPrice = this.size.calculatePrice();
-    const price = burgerPrice + stuffingPrice;
-    return price;
+    return burgerPrice + stuffingPrice;
   }
 
   calculateCalories() {
@@ -103,8 +102,7 @@ class Burger extends Product {
     }, 0);
 
     const burgerCalories = this.size.calculateCalories();
-    const calories = burgerCalories + stuffingCalories;
-    return calories;
+    return burgerCalories + stuffingCalories;
   }
 }
 
@@ -124,7 +122,7 @@ class Order {
 
   removeProduct(product) {
     if (this.status === 'initial') {
-      this.products = this.products.filter(p => p !== product);
+      this.products = this.products.filter((p) => p !== product);
     } else {
       throw new Error("You can't remove a product after payment.");
     }
@@ -132,22 +130,28 @@ class Order {
 
   calculatePrice() {
     return this.products.reduce(
-      (sum, product) => sum + product.calculatePrice(), 0);
+      (sum, product) => sum + product.calculatePrice(),
+      0
+    );
   }
 
   calculateCalories() {
     return this.products.reduce(
-      (sum, product) => sum + product.calculateCalories(), 0);
+      (sum, product) => sum + product.calculateCalories(),
+      0
+    );
   }
 
   buy() {
     if (this.status === 'initial') {
       this.status = 'finished';
+      Object.freeze(this);
+      Object.freeze(this.products);
     } else {
-      throw new Error("You can't buy an order after payment.")
+      throw new Error("You can't buy an order after payment.");
     }
   }
-  
+
   getProducts() {
     return this.products;
   }
