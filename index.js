@@ -147,6 +147,9 @@ class Order {
       this.status = 'finished';
       Object.freeze(this);
       Object.freeze(this.products);
+      this.products = Object.freeze(
+        this.products.map((product) => Object.freeze(product))
+      );
     } else {
       throw new Error("You can't buy an order after payment.");
     }
